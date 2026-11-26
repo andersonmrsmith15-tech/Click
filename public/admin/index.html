@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fake Click Pay — Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Login -->
+  <section id="login" class="login hidden">
+    <form id="loginForm" class="login-box">
+      <div class="brand big"><span class="logo">₽</span> Fake Click Pay</div>
+      <p class="muted">Admin panelga kirish uchun <code>ADMIN_KEY</code> ni kiriting</p>
+      <input id="loginKey" type="password" placeholder="Admin kalit" autocomplete="current-password" required>
+      <button class="btn primary" type="submit">Kirish</button>
+      <p id="loginErr" class="err"></p>
+    </form>
+  </section>
+
+  <!-- App -->
+  <div id="app" class="layout hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="logo">₽</span> Fake Click Pay</div>
+      <nav>
+        <a href="#dashboard" data-view="dashboard">📊 Boshqaruv</a>
+        <a href="#cards" data-view="cards">💳 Kartalar</a>
+        <a href="#payments" data-view="payments">🧾 To'lovlar</a>
+        <a href="#merchants" data-view="merchants">🏪 Merchantlar</a>
+      </nav>
+      <button id="logout" class="btn ghost small">Chiqish</button>
+    </aside>
+
+    <main class="main">
+      <!-- Dashboard -->
+      <section data-page="dashboard">
+        <header class="page-head"><h1>Boshqaruv</h1><button class="btn" data-refresh>↻ Yangilash</button></header>
+        <div id="stats" class="stats"></div>
+        <h2>So'nggi to'lovlar</h2>
+        <div class="table-wrap"><table id="recentPayments"></table></div>
+      </section>
+
+      <!-- Cards -->
+      <section data-page="cards">
+        <header class="page-head">
+          <h1>Kartalar</h1>
+          <button class="btn primary" id="newCardBtn">+ Yangi karta</button>
+        </header>
+        <div class="filters">
+          <input id="cardSearch" placeholder="Raqam, ism, telefon bo'yicha qidirish…">
+          <select id="cardStatus"><option value="">Barcha holatlar</option><option value="active">Faol</option><option value="blocked">Bloklangan</option></select>
+          <select id="cardMerchant"><option value="">Barcha merchantlar</option></select>
+        </div>
+        <div class="table-wrap"><table id="cardsTable"></table></div>
+        <p id="cardsTotal" class="muted"></p>
+      </section>
+
+      <!-- Payments -->
+      <section data-page="payments">
+        <header class="page-head"><h1>To'lovlar</h1><button class="btn" data-refresh>↻ Yangilash</button></header>
+        <div class="filters">
+          <input id="paySearch" placeholder="payment_id, order_id, izoh…">
+          <select id="payStatus">
+            <option value="">Barcha holatlar</option>
+            <option value="completed">completed</option><option value="pending">pending</option>
+            <option value="failed">failed</option><option value="cancelled">cancelled</option>
+            <option value="refunded">refunded</option><option value="expired">expired</option>
+          </select>
+          <select id="payMerchant"><option value="">Barcha merchantlar</option></select>
+        </div>
+        <div class="table-wrap"><table id="paymentsTable"></table></div>
+      </section>
+
+      <!-- Merchants -->
+      <section data-page="merchants">
+        <header class="page-head"><h1>Merchantlar</h1><button class="btn primary" id="newMerchantBtn">+ Yangi merchant</button></header>
+        <p class="muted">Merchant — bu tizimni API orqali ishlatadigan tashqi loyiha. Har biriga alohida API kalit beriladi.</p>
+        <div class="table-wrap"><table id="merchantsTable"></table></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Yopish">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>

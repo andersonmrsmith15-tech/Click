@@ -1,0 +1,19 @@
+{
+  "name": "fake-click-pay",
+  "version": "1.0.0",
+  "description": "Click'ga o'xshash fake karta hisobidan pul yechish tizimi (tashqi API)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node --no-warnings=ExperimentalWarning src/server.js",
+    "dev": "node --no-warnings=ExperimentalWarning --watch src/server.js",
+    "create-merchant": "node --no-warnings=ExperimentalWarning src/cli/createMerchant.js",
+    "demo": "node examples/demo.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "express": "^4.22.3"
+  }
+}
